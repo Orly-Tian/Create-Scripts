@@ -2,22 +2,23 @@
 
 
 import os
-import shutil
+
+def create():
+  with open(file, "w")as f:
+    f.write("file" + str(k))
 
 for i in range(0, 20):
-  
   k = "%02d" % i
-  file = "/root/file"
+  dir = "/root/file/"
+  file = dir + "file" + str(k)
   
-  if os.path.exists(file):
-    if os.path.exists(file + "/file" + str(k)):
-      os.remove(file + "/file" + str(k))
-      with open(os.path.join(file + "/file" + str(k)), "w") as f:
-        f.write("file" + str(k))
-    with open(os.path.join(file + "/file" + str(k)), "w") as f:
-      f.write("file" + str(k))
-      
+  if os.path.exists(dir):
+    if os.path.exists(file):
+      os.remove(file)
+      create()
+    else:
+      create()
+
   else:
-    os.mkdir(file)
-  with open(os.path.join(file + "/file" + str(k)), "w") as f:
-    f.write("file" + str(k))
+    os.mkdir(dir)
+    create()
